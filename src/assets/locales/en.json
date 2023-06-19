@@ -1,0 +1,43 @@
+{
+  "gl": {
+    "edit": "edit",
+    "sanab": "Sanab",
+    "oneline-library-for-you": "Online library for you",
+    "sanabShort": "sanab",
+    "home": "Home",
+    "myLibrary": "myLibrary",
+    "category": "category",
+    "search": "search",
+    "onlineLibrary": "online library",
+    "alwaysWithYou": "alwayt with you for you:)",
+    "gl": "more",
+    "purchaseBasket": "Purchase Basket",
+    "about": "about sanab",
+    "register": "register",
+    "noData": "No Data Found",
+    "add": "Add",
+    "loading": "Loading ...",
+    "addComment": "Add Comment"
+  },
+  "auth": {
+    "enterAccount": "Login To Account",
+    "register": "Register",
+    "enterEmailOrPhone": "Enter Your Email Or Phone Number ",
+    "emailOrPhone": "Email Or Phone",
+    "login": "Login",
+    "noAccount": "Don't you have acount?",
+    "hasAccount": "Do you have account?",
+    "account": "Account",
+    "profile": "Profile",
+    "enterCode": "Code has been sent to your phone , enter here",
+    "resendCode": "Resend code after",
+    "notGetCode": "Did not get code ?",
+    "sendAgain": "Send again"
+  },
+  "home": {
+    "most-sell-text-book": "Most Sell Text Book",
+    "book-podcast": "podcast and listening books",
+    "ali": "ghajar and ali shirvani",
+    "suggestionForYou": "Suggestion for you"
+  }
+}
