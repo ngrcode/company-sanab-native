@@ -5,6 +5,7 @@
   "scripts": {
     "and": "react-native run-android",
     "and:clean": "cd ./android && ./gradlew clean && cd ..",
+    "release": "cd ./android && ./gradlew assembleRelease && cd ..",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
@@ -15,6 +16,7 @@
     "@epubjs-react-native/core": "^1.2.0",
     "@epubjs-react-native/file-system": "^1.0.0",
     "@react-native-async-storage/async-storage": "^1.18.1",
+    "@react-native-community/slider": "^4.4.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
@@ -45,6 +47,7 @@
     "react-native-sound": "^0.11.2",
     "react-native-svg": "^13.9.0",
     "react-native-tab-view": "^3.5.1",
+    "react-native-track-player": "^3.2.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-webview": "^13.2.2",
     "react-redux": "^8.1.0",

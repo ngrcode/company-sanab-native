@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 24,
     paddingRight: 24,
+    marginTop: 50,
   },
   item: {
     display: 'flex',

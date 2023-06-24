@@ -1,14 +1,24 @@
-import React, {useEffect} from 'react';
-import {View, BackHandler, Button, Text} from 'react-native';
+import React, {useEffect, useState, useRef} from 'react';
+import {
+  View,
+  BackHandler,
+  Button,
+  Text,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import CategoryHBooks from 'screens/Category/CategoryHBooks';
 import {useGetCategoryQuery} from 'services/category.service';
 import {useNavigation} from '@react-navigation/native';
+import {backHandlerMethod} from 'utils/common.utils';
 
 function CategoryHorizontal(props: any) {
   const {paramsRoute, setExParams} = props;
   const navigation = useNavigation();
   const {categoryId, categoryName} = paramsRoute;
   const {data: category, refetch} = useGetCategoryQuery(categoryId);
+  const [refreshing, setRefreshing] = useState(false);
+  const ref = useRef();
 
   useEffect(() => {
     setExParams((prev: any) => {
@@ -17,15 +27,7 @@ function CategoryHorizontal(props: any) {
   }, [setExParams, paramsRoute]);
 
   useEffect(() => {
-    const backAction = (e: any) => {
-      navigation.navigate('category');
-      return true;
-    };
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    );
-    return () => backHandler.remove();
+    backHandlerMethod(navigation, 'category');
   }, [navigation]);
 
   useEffect(() => {
@@ -34,13 +36,21 @@ function CategoryHorizontal(props: any) {
     });
   }, []);
 
+  const handleRefreshing = () => {
+    ref?.current?.refetch();
+    refetch();
+  };
+
   return (
-    <View>
-      <CategoryHBooks category={category} />
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={handleRefreshing} />
+      }>
+      <CategoryHBooks category={category} ref={ref} />
       {category?.childs?.map((cat: any) => (
         <CategoryHBooks key={cat?.id} category={cat} />
       ))}
-    </View>
+    </ScrollView>
   );
 }
 

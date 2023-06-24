@@ -1,28 +1,61 @@
 import {StyleSheet} from 'react-native';
 import {theme} from 'shared/theme';
 
-export const styles = (props?: any) =>
-  StyleSheet.create({
-    headerImage: {
-      width: '100%',
-    },
-    grayBg: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
-      alignContent: 'flex-end',
-      paddingLeft: 24,
-      backgroundColor: theme.colors.gray[1],
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-    },
-    text: {
-      color: theme.colors.singletons.white,
-      fontWeight: '700',
-      fontSize: 13,
-      lineHeight: 22,
-    },
-  });
+export const styles = StyleSheet.create({
+  img: {
+    width: 231,
+    height: 290,
+    marginTop: 32,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  iconClock: {
+    fontSize: 20,
+  },
+  iconDownload: {
+    fontSize: 22,
+  },
+  iconNavicon: {
+    fontSize: 30,
+  },
+  iconsBlock: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  iconBlock: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconText: {
+    fontWeight: '400',
+    fontSize: 11,
+    lineHeight: 19,
+    color: theme.colors.gray[5],
+    marginTop: 8,
+  },
+
+  block: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginTop: 24,
+    fontSize: 100,
+  },
+  imgTitle: {
+    fontWeight: '500',
+    fontSize: 13,
+    lineHeight: 22,
+    color: theme.colors.singletons.black,
+    marginLeft: 15,
+  },
+  imgNumber: {
+    fontWeight: '400',
+    fontSize: 13,
+    lineHeight: 22,
+    color: theme.colors.gray[0],
+  },
+});

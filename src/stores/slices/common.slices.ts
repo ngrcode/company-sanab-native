@@ -2,18 +2,20 @@ import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import {PURGE} from 'redux-persist';
 
-export interface CounterState {
+export interface InitialStateInterface {
   token: string;
   refreshToken: string;
   curUser: object;
   loginCode: any;
+  modalBook: {show: boolean; bookId: string};
 }
 
-const initialState: CounterState = {
+const initialState: InitialStateInterface = {
   token: '',
   loginCode: {code: '', id: ''},
   refreshToken: '',
   curUser: {},
+  modalBook: {show: false, bookId: ''},
 };
 
 export const commonSlice = createSlice({
@@ -46,6 +48,12 @@ export const commonSlice = createSlice({
       state.loginCode = {code: '', id: ''};
       state.refreshToken = '';
     },
+    handleModalBook: (state, action: PayloadAction<any>) => {
+      const {bookId, show} = action.payload;
+      state.modalBook.bookId = bookId;
+      state.modalBook.show = show;
+    },
+    reset: () => initialState,
   },
   extraReducers: builder => {
     builder.addCase(PURGE, state => {
@@ -54,7 +62,13 @@ export const commonSlice = createSlice({
   },
 });
 
-export const {handleAuth, logout, handleProfile, handleLoginCode} =
-  commonSlice.actions;
+export const {
+  handleAuth,
+  logout,
+  handleProfile,
+  handleLoginCode,
+  reset,
+  handleModalBook,
+} = commonSlice.actions;
 
 export default commonSlice.reducer;

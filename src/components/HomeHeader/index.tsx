@@ -13,7 +13,7 @@ function Header() {
   const {colors} = useTheme();
   const navigation = useNavigation();
   const {t} = useTranslation();
-  const {common} = useSelector((state: RootState) => state);
+  const common = useSelector((state: RootState) => state.common);
   const dispatch = useDispatch();
   const token = common.token;
 

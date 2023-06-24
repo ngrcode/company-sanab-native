@@ -8,6 +8,7 @@ import {
   buyBookUrl,
   boughtBooksByUserUrl,
   addBookToLibraryUrl,
+  boughtBooksUrl,
 } from 'services/urls/book.urls';
 
 const bookApi = api.injectEndpoints({
@@ -18,6 +19,11 @@ const bookApi = api.injectEndpoints({
     getBoughtsBookByUser: build.query({
       query: (id: any) => {
         return {url: boughtBooksByUserUrl(id), method: 'Get'};
+      },
+    }),
+    getBoughtsBooks: build.query({
+      query: (id: any) => {
+        return {url: boughtBooksUrl(), method: 'Get'};
       },
     }),
     getBook: build.query({
@@ -54,8 +60,8 @@ const bookApi = api.injectEndpoints({
       },
     }),
     postAddBookToLibrary: build.mutation({
-      query: (id: any) => {
-        console.log('**********id************************************', id);
+      query: (props: any) => {
+        const {id} = props;
         return {
           url: addBookToLibraryUrl(id),
           method: 'POST',
@@ -72,6 +78,7 @@ export const {
   useGetPublisherBooksQuery,
   useGetAuthorBooksQuery,
   useGetBoughtsBookByUserQuery,
+  useGetBoughtsBooksQuery,
   useGetSearchBooksQuery,
   usePostBuyBookMutation,
   usePostAddBookToLibraryMutation,

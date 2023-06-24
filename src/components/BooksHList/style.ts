@@ -1,13 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {theme} from 'shared/theme';
 
-export const stylesFunc = (show: any) =>
-  StyleSheet.create({
-    show: {
-      display: show ? 'flex' : 'none',
-    },
-  });
-
 export const styles = StyleSheet.create({
   container: {
     marginRight: 24,

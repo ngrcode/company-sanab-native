@@ -13,6 +13,7 @@ import Auth from 'screens/Auth';
 import PurchaseBasket from 'screens/PurchaseBasket';
 import Test from 'screens/Test';
 import CategoryItem from 'screens/Category';
+import AudioBook from 'screens/AudioBook';
 
 const dontShowTabBar = {
   tabBarItemStyle: {
@@ -71,16 +72,6 @@ export const routes = [
     },
   },
   {
-    name: 'payments-history',
-    component: PaymentsHistory,
-    options: {
-      tabBarLabel: 'تاریخچه پرداخت ها',
-      title: 'تاریخچه پرداخت ها',
-      ...dontShowTabBar,
-    },
-  },
-
-  {
     name: 'login-or-register',
     component: LoginOrRegister,
     options: {
@@ -89,6 +80,30 @@ export const routes = [
       ...dontShowTabBar,
     },
   },
+  {
+    name: 'auth',
+    component: Auth,
+    options: {headerShown: false, ...dontShowTabBar},
+  },
+  {
+    name: 'payments-history',
+    component: PaymentsHistory,
+    options: {
+      tabBarLabel: 'تاریخچه پرداخت ها',
+      title: 'تاریخچه پرداخت ها',
+      ...dontShowTabBar,
+    },
+  },
+  {
+    name: 'audio-book',
+    component: AudioBook,
+    options: {
+      tabBarLabel: 'تاریخچه پرداخت ها',
+      title: 'تاریخچه پرداخت ها',
+      ...dontShowTabBar,
+    },
+  },
+
   {
     name: 'contact-us',
     component: ContactUs,
@@ -103,11 +118,7 @@ export const routes = [
       ...dontShowTabBar,
     },
   },
-  {
-    name: 'auth',
-    component: Auth,
-    options: {headerShown: false, ...dontShowTabBar},
-  },
+
   {
     name: 'purchase-basket',
     component: PurchaseBasket,

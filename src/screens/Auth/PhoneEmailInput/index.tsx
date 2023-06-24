@@ -30,7 +30,7 @@ const PhoneEmailInput = ({
         />
         <Text style={styles.errors}>{errors}</Text>
       </View>
-      <View style={styles.noAccount}>
+      {/* <View style={styles.noAccount}>
         <Button
           btnType="default"
           width={50}
@@ -38,7 +38,7 @@ const PhoneEmailInput = ({
           title={isLogin ? t('auth.register') : t('auth.login')}
         />
         <Text>{isLogin ? t('auth.noAccount') : t('auth.hasAccount')}</Text>
-      </View>
+      </View> */}
     </View>
   );
 };

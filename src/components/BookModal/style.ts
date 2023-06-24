@@ -2,12 +2,6 @@ import {StyleSheet} from 'react-native';
 import {theme} from 'shared/theme';
 
 export const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
   modalView: {
     backgroundColor: 'white',
     width: '100%',

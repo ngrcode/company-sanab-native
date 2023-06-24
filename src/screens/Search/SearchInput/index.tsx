@@ -23,6 +23,7 @@ const SearchInput = ({setParams}: any) => {
         <View style={inputStyles(value).inputIconBlock}>
           <IconSimple
             name="close"
+            onPress={() => onChange('')}
             style={[styles.inputIcons, styles.cancelIcon]}
           />
         </View>

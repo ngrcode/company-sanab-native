@@ -6,7 +6,7 @@ import {styles} from './style';
 import MyLibraryHeader from 'screens/MyLibrary/MyLibraryHeader';
 import {ScrollView} from 'react-native';
 import MyLibraryPurchase from 'screens/MyLibrary/MyLibraryPurchase';
-import MyLibraryYourBooks from 'screens/MyLibrary/MyLibraryYourBooks';
+import MyLibraryMyBooks from 'screens/MyLibrary/MyLibraryMyBooks';
 import MyLibraryHeaderOffline from 'screens/MyLibrary/MylibraryHeaderOffline';
 import MyLibraryHeaderBooks from 'screens/MyLibrary/MyLibraryHeaderBooks';
 import MyLibraryForm from 'screens/MyLibrary/MyLibraryForm';
@@ -15,22 +15,24 @@ import MyLibraryGiftCard from 'screens/MyLibrary/MyLibraryGiftCard';
 import {useSelector} from 'react-redux';
 import {
   useGetBooksQuery,
+  useGetBoughtsBooksQuery,
   useGetBoughtsBookByUserQuery,
 } from 'services/book.service';
+import Button from 'components/Button';
 
 const MyLibrary = () => {
   const [refreshing, setRefreshing] = useState(false);
   const {t} = useTranslation();
   const selector = useSelector(state => state.common);
-  const {id: logedInUserId} = selector.curUser;
-  const {data: boughtBooks, refetch: refetchMyBooks} =
-    useGetBoughtsBookByUserQuery(logedInUserId);
+  const logedInUserId = selector?.curUser?.id;
+  const {data: boughtBooks, refetch: refetchBooks} =
+    useGetBoughtsBookByUserQuery(logedInUserId, {
+      skip: logedInUserId ? false : true,
+    });
 
   const handleRefreshing = () => {
-    refetchMyBooks();
+    refetchBooks();
   };
-
-  console.log('=========kk=========>', boughtBooks, logedInUserId);
 
   return (
     <ScrollView
@@ -42,7 +44,8 @@ const MyLibrary = () => {
       {/* <MyLibraryGiftCard /> */}
       <MyLibraryBuyForm />
       {/* <MyLibraryPurchase /> */}
-      <MyLibraryYourBooks />
+      {/* <Button onPress={() => refetchBooks()} btnType="blueBg" title="test" /> */}
+      <MyLibraryMyBooks books={boughtBooks?.Books} />
     </ScrollView>
   );
 };

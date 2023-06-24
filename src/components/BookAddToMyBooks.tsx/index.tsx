@@ -18,9 +18,11 @@ interface Props {
 const BookAddToMyBooks = (props: Props) => {
   const {id, price} = props;
   const {t} = useTranslation();
-  const {common} = useSelector((state: RootState) => state);
+  const common = useSelector((state: RootState) => state.common);
   const {token} = common;
   const [buyBook, {isLoading, data}] = usePostBuyBookMutation('post');
+  const [addToLibrary, {data: dataAddToLibrary}] =
+    usePostAddBookToLibraryMutation('post');
 
   return (
     <Formik
@@ -28,7 +30,8 @@ const BookAddToMyBooks = (props: Props) => {
         token,
         from: `${process.env.BASE_URL}/books/${id}`,
       }}
-      onSubmit={values => buyBook({body: values, id})}>
+      // onSubmit={values => buyBook({body: values, id})}>
+      onSubmit={values => addToLibrary({id})}>
       {({handleChange, handleBlur, handleSubmit, values}) => (
         <>
           <Loading loading={isLoading} />

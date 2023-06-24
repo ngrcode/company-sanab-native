@@ -1,15 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Text,
-  View,
-  Image,
-  ScrollView,
-  BackHandler,
-  ActivityIndicator,
-  TextInput,
-  TouchableHighlight,
-} from 'react-native';
-import {Form, Field, Formik} from 'formik';
+import {Text, View, Image, ScrollView, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {styles, stylesFunc} from './style';
 import BooksHList from 'components/BooksHList';
@@ -37,18 +27,18 @@ import BookAddToMyBooks from 'components/BookAddToMyBooks.tsx';
 import PdfModal from 'components/Book/PdfModal';
 // import {bookData} from 'utils/book.utils';
 
-function Book(props: any) {
+const Book = () => {
   const theme = useTheme();
   const {t} = useTranslation();
-  const {common} = useSelector((state: RootState) => state);
-  const {token, curUser} = common;
+  const common = useSelector((state: RootState) => state.common);
+  const {token, curUser, modalBook} = common;
+  const {bookId} = modalBook;
   const navigation = useNavigation();
-  const {setCurCategory, curCategory, id} = props;
   const [publisherId, setPublisherId] = useState(null);
   const [authorId, setAuthorId] = useState(null);
   const [showPdf, setShowPdf] = useState(false);
-  const {data: bookData, refetch: getBookData} = useGetBookQuery(id);
-  const {data: bookCommentsData} = useGetBookCommentsQuery(id);
+  const {data: bookData, refetch: getBookData} = useGetBookQuery(bookId);
+  const {data: bookCommentsData} = useGetBookCommentsQuery(bookId);
   const {data: userCommentsData} = useGetUserCommentsQuery(curUser.id);
   const {
     data: publisherBooks,
@@ -95,23 +85,6 @@ function Book(props: any) {
   // };
 
   useEffect(() => {
-    const backAction = (e: any) => {
-      if (curCategory) {
-        setCurCategory('');
-        return true;
-      } else {
-        return false;
-      }
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    );
-    return () => backHandler.remove();
-  }, [navigation]);
-
-  useEffect(() => {
     if (bookData) {
       setPublisherId(bookData.publisher.id);
       setAuthorId(bookData?.authors?.writer?.list[0]?.id);
@@ -120,9 +93,7 @@ function Book(props: any) {
 
   useEffect(() => {
     getBookData();
-  }, []);
-
-  console.log(id);
+  }, [2000]);
 
   return (
     <>
@@ -146,7 +117,13 @@ function Book(props: any) {
             <Text style={styles.breadCrumbs}>
               {bookData?.authors?.translator?.list[0]?.fullName}
             </Text>
-            {token && <BookAddToMyBooks id={id} price={bookData?.price} />}
+            {token && (
+              <BookAddToMyBooks
+                id={bookId}
+                isFree={bookData?.isFree}
+                price={bookData?.price}
+              />
+            )}
             {bookData?.files.length !== 0 && (
               <>
                 <Button
@@ -174,7 +151,7 @@ function Book(props: any) {
               <Icon
                 name="bookmark"
                 style={styles.bookmarkIcon}
-                onPress={() => addBook(id)}
+                onPress={() => addBook(bookId)}
               />
               <Icon name="share" style={styles.shareIcon} />
               {/* <Text style={styles.pageNumber}>تعداد صفحات : 124</Text> */}
@@ -224,6 +201,6 @@ function Book(props: any) {
       )}
     </>
   );
-}
+};
 
 export default Book;

@@ -22,6 +22,7 @@ const Search = () => {
     useGetSearchBooksQuery({
       ...params,
     });
+
   return (
     <>
       <SearchHeader setParams={setParams} />

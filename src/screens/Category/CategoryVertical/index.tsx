@@ -6,7 +6,10 @@ import {
   RefreshControl,
   Text,
 } from 'react-native';
-import {useGetCategoryBooksQuery} from 'services/category.service';
+import {
+  useGetCategoryBooksQuery,
+  useGetBoughtsBooksQuery,
+} from 'services/category.service';
 import BooksVList from 'components/BooksVList';
 import Loading from 'components/Loading';
 import {useNavigation} from '@react-navigation/native';
@@ -18,12 +21,25 @@ function CategoryVertical(props: any) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
-  const {categoryId, categoryName} = paramsRoute;
-  const {data, isLoading, refetch} = useGetCategoryBooksQuery({
-    id: categoryId,
-    limit: 100,
-    page: 1,
-  });
+  const {categoryId, categoryName, boughtBooks} = paramsRoute;
+  const {data, isLoading, refetch} = useGetCategoryBooksQuery(
+    {
+      id: categoryId,
+      limit: 100,
+      page: 1,
+    },
+    {skip: categoryId ? false : true},
+  );
+
+  // const {data: boughtBooksData, refetch: refetchMyBooks} =
+  //   useGetBoughtsBooksQuery(
+  //     {
+  //       id: categoryId,
+  //       limit: 100,
+  //       page: 1,
+  //     },
+  //     {skip: boughtBooks ? false : true},
+  //   );
 
   const handleRefreshing = async () => {
     setRefreshing(true);

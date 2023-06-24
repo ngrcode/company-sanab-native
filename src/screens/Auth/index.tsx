@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
-import {validateSchema} from 'utils/auth.utils';
-import {styles} from './style';
 import {
   View,
   KeyboardAvoidingView,
@@ -11,6 +9,10 @@ import {
   Image,
 } from 'react-native';
 import {Formik} from 'formik';
+import {useSelector} from 'react-redux';
+
+import {styles} from './style';
+import {validateSchema} from 'utils/auth.utils';
 import Button from 'components/Button';
 import PhoneEmailInput from './PhoneEmailInput';
 import RecoveryCode from './RecoveryCode';
@@ -20,12 +22,10 @@ import {
 } from 'services/auth.service';
 import {submitMethod, resendCodeMethod} from 'methods/auth.methods';
 import Loading from 'components/Loading';
-import {useDispatch, useSelector} from 'react-redux';
-import {logout} from 'stores/slices/common.slices';
+import {backHandlerMethod} from 'utils/common.utils';
 
 const Unauthorized = ({navigation, route}: any) => {
   const {t} = useTranslation();
-  const dispatch = useDispatch();
   const {params} = route;
   const {isLoginForm} = params;
   const [isLogin, setIsLogin] = useState(isLoginForm);
@@ -52,7 +52,9 @@ const Unauthorized = ({navigation, route}: any) => {
     setIsLogin(isLoginForm);
   }, [isLoginForm]);
 
-  // dispatch(logout(''));
+  useEffect(() => {
+    backHandlerMethod(navigation, 'home');
+  }, [navigation]);
 
   return (
     <KeyboardAvoidingView

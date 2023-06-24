@@ -1,5 +1,5 @@
 // import React, {useEffect, useState} from 'react';
-// import {Alert, Text, BackHandler, View, ScrollView} from 'react-native';
+// import {Alert, Text, View, ScrollView} from 'react-native';
 // import {styles} from './style';
 // import Books from 'components/BooksVList';
 // import Book1 from 'assets/images/temporary/one.png';
@@ -155,7 +155,6 @@ const PreviewLayout = ({
   selectedValue,
   setSelectedValue,
 }: PreviewLayoutProps) => {
-
   return (
     <View style={{padding: 10, flex: 1}}>
       <Text style={styles.label}>{label}-jhgjhg</Text>

@@ -61,7 +61,7 @@ function PurchaseTab() {
     <ScrollView>
       <View style={styles.container}>
         {arr.map((item: any) => (
-          <View style={styles.imgBlockWrapper}>
+          <View style={styles.imgBlockWrapper} key={item.id}>
             <View style={styles.imgBlock}>
               <Image style={styles.img} key={item.id} source={item.src} />
             </View>

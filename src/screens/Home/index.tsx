@@ -4,14 +4,18 @@ import HomeTtile from './HomeTitle';
 import {useGetBooksQuery} from 'services/book.service';
 import {useGetCategoryBooksQuery} from 'services/category.service';
 import BookSuggestion from 'components/BookSuggestion';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {api} from 'services/api';
 import Loading from 'components/Loading';
 import {catIdsForBooks} from 'utils/home.utils';
 import HomeBooksByCategory from 'screens/Home/HomeBooksByCategory';
+import {persistStore} from 'redux-persist';
+import {persistor, store} from 'stores/store';
+import {reset} from 'stores/slices/common.slices';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const selector = useSelector(state => state.common);
   const {
     data: booksList,
     isLoading,
@@ -40,13 +44,18 @@ const Home = () => {
     //   categoryName: category.name,
     // });
   };
+
   const handleRefreshing = async () => {
-    // setRefreshing(true);
-    // for (let ref of childRef.current) {
-    //   await ref.current.refetch();
-    // }
-    // setRefreshing(false);
-    dispatch(api.util.resetApiState());
+    setRefreshing(true);
+    for (let ref of childRef.current) {
+      await ref.current.refetch();
+    }
+    setRefreshing(false);
+    // dispatch(api.util.resetApiState());
+  };
+
+  const removePersistorCommon = () => {
+    dispatch(reset());
   };
 
   childRef.current = catIdsForBooks.map(
@@ -58,7 +67,7 @@ const Home = () => {
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={handleRefreshing} />
       }>
-      {/* <Button onPress={handleRefreshing} title="test" /> */}
+      {/* <Button onPress={removePersistorCommon} title="test" /> */}
       {/* <Loading loading={isLoading} /> */}
       <HomeTtile />
       {catIdsForBooks.map((item: any, index: number) => (
