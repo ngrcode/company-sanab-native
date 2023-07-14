@@ -1,12 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, Image, ScrollView, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {BASE_URL} from 'env';
+import HTMLView from 'react-native-htmlview';
+import {useTranslation} from 'react-i18next';
+import {useTheme} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
 import {styles, stylesFunc} from './style';
 import BooksHList from 'components/BooksHList';
-import Button from 'components/Button';
 import UsersComment from 'components/UsersComment';
 import YourComment from 'components/YourComment';
-import {useNavigation} from '@react-navigation/native';
 import {
   useGetBookQuery,
   useGetPublisherBooksQuery,
@@ -14,18 +20,13 @@ import {
   usePostAddBookToLibraryMutation,
   // usePostBuyBookMutation,
 } from 'services/book.service';
-import {BASE_URL} from 'env';
-import HTMLView from 'react-native-htmlview';
-import {useTranslation} from 'react-i18next';
-import {useTheme} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
 import {
   useGetBookCommentsQuery,
   useGetUserCommentsQuery,
 } from 'services/comment.service';
 import BookAddToMyBooks from 'components/BookAddToMyBooks.tsx';
-import PdfModal from 'components/Book/PdfModal';
 // import {bookData} from 'utils/book.utils';
+import FilesBlock from './FilesBlock';
 
 const Book = () => {
   const theme = useTheme();
@@ -33,10 +34,9 @@ const Book = () => {
   const common = useSelector((state: RootState) => state.common);
   const {token, curUser, modalBook} = common;
   const {bookId} = modalBook;
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const [publisherId, setPublisherId] = useState(null);
   const [authorId, setAuthorId] = useState(null);
-  const [showPdf, setShowPdf] = useState(false);
   const {data: bookData, refetch: getBookData} = useGetBookQuery(bookId);
   const {data: bookCommentsData} = useGetBookCommentsQuery(bookId);
   const {data: userCommentsData} = useGetUserCommentsQuery(curUser.id);
@@ -49,7 +49,6 @@ const Book = () => {
     skip: typeof publisherId === 'string' ? false : true,
   });
   const [addBook] = usePostAddBookToLibraryMutation('post');
-
   const {data: authorBooks, isFetching: isFetchingAuthorBooks} =
     useGetAuthorBooksQuery(authorId, {
       skip: authorId ? false : true,
@@ -124,29 +123,7 @@ const Book = () => {
                 price={bookData?.price}
               />
             )}
-            {bookData?.files.length !== 0 && (
-              <>
-                <Button
-                  btnType="blueBorder"
-                  height={45}
-                  marginTop={12}
-                  onPress={() => setShowPdf(true)}
-                  title={
-                    <View style={styles.btnBlock}>
-                      <Icon name="angle-left" style={styles.angleLeftIcon} />
-                      <Text style={styles.readSample}>مطالعه نمونه</Text>
-                    </View>
-                  }
-                />
-                <PdfModal
-                  showPdf={showPdf}
-                  setShowPdf={setShowPdf}
-                  // epubSrc="https://s3.amazonaws.com/moby-dick/OPS/package.opf"
-                  // pdfUri="http://samples.leanpub.com/thereactnativebook-sample.pdf"
-                  fileSrc={`${process.env.BASE_URL}/files/${bookData?.files[0].path}`}
-                />
-              </>
-            )}
+            <FilesBlock bookData={bookData} />
             <View style={styles.shareIconBlock}>
               <Icon
                 name="bookmark"

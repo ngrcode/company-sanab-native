@@ -46,7 +46,7 @@ const temporaryArr = [
   {id: 6, title: 'تخفیف', desc: <Text style={{textAlign: 'right'}}>-</Text>},
 ];
 
-function ContactUs() {
+function PaymentsHistory() {
   return (
     <ScrollView>
       {[1, 2, 3, 4, 5].map((number: any) => (
@@ -71,4 +71,4 @@ function ContactUs() {
     </ScrollView>
   );
 }
-export default ContactUs;
+export default PaymentsHistory;

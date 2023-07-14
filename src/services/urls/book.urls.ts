@@ -16,3 +16,6 @@ export const boughtBooksByUserUrl = (userId: string) =>
 export const boughtBooksUrl = () => `/books/boughtBooks`;
 
 export const searchBooksUrl = '/search';
+
+export const putPageNumberBookUrl = (bookId: any) =>
+  `books/${bookId}/pageNumber`;

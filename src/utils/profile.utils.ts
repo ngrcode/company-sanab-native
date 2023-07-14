@@ -34,9 +34,9 @@ export const profileInfo2 = [
   {
     id: 0,
     title: 'تاریخچه پرداخت',
-    navigatePath: 'payments-history',
+    navigatePath: 'PaymentsHistory',
   },
-  {id: 1, title: 'تماس با ما', navigatePath: 'contact-us'},
+  {id: 1, title: 'تماس با ما', navigatePath: 'ContactUs'},
   {id: 2, title: 'درباره سناب', navigatePath: 'about'},
   {
     id: 3,

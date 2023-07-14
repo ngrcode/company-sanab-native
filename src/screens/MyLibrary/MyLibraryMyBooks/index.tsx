@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Text, View, Button, RefreshControl} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {styles} from './style';
 import BooksHList from 'components/BooksHList';
 import {
@@ -11,7 +12,7 @@ import {useSelector} from 'react-redux';
 
 function MyLibraryMyBooks(props: any) {
   const {books} = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const clickc = () => {
     refetch();
   };

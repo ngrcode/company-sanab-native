@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
 import {BackHandler} from 'react-native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
 import {useGetAuthorBooksQuery} from 'services/book.service';
 import BooksVList from 'components/BooksVList';
 import {ScrollView} from 'react-native';
@@ -10,7 +12,8 @@ import {backHandlerMethod} from 'utils/common.utils';
 function Author(props: any) {
   const {paramsRoute, exParams} = props;
   const {authorName, authorId} = paramsRoute;
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
   const {data: authorBooks, isLoading} = useGetAuthorBooksQuery(authorId);
 
   useEffect(() => {

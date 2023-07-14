@@ -11,9 +11,9 @@ import ContactUs from 'screens/ContactUs';
 import About from 'screens/About';
 import Auth from 'screens/Auth';
 import PurchaseBasket from 'screens/PurchaseBasket';
-import Test from 'screens/Test';
-import CategoryItem from 'screens/Category';
 import AudioBook from 'screens/AudioBook';
+import Book from 'screens/Book';
+import Test from 'screens/Test';
 
 const dontShowTabBar = {
   tabBarItemStyle: {
@@ -22,6 +22,22 @@ const dontShowTabBar = {
 };
 
 export const routes = [
+  // {
+  //   name: 'test',
+  //   component: Test,
+  //   options: {
+  //     tabBarLabel: `${i18next.t('gl.search')}`,
+  //     title: `${i18next.t('gl.search')}`,
+  //   },
+  // },
+  {
+    name: 'Book',
+    component: Book,
+    options: {
+      headerShown: false,
+      ...dontShowTabBar,
+    },
+  },
   {
     name: 'search',
     component: SearchScreen,
@@ -72,7 +88,7 @@ export const routes = [
     },
   },
   {
-    name: 'login-or-register',
+    name: 'LoginOrRegister',
     component: LoginOrRegister,
     options: {
       tabBarLabel: `${i18next.t('auth.profile')}`,
@@ -86,7 +102,7 @@ export const routes = [
     options: {headerShown: false, ...dontShowTabBar},
   },
   {
-    name: 'payments-history',
+    name: 'PaymentsHistory',
     component: PaymentsHistory,
     options: {
       tabBarLabel: 'تاریخچه پرداخت ها',
@@ -95,17 +111,16 @@ export const routes = [
     },
   },
   {
-    name: 'audio-book',
+    name: 'AudioBook',
     component: AudioBook,
     options: {
-      tabBarLabel: 'تاریخچه پرداخت ها',
-      title: 'تاریخچه پرداخت ها',
+      tabBarLabel: 'فایل صوتی',
+      title: 'فایل صوتی',
       ...dontShowTabBar,
     },
   },
-
   {
-    name: 'contact-us',
+    name: 'ContactUs',
     component: ContactUs,
     options: {...dontShowTabBar},
   },
@@ -118,9 +133,8 @@ export const routes = [
       ...dontShowTabBar,
     },
   },
-
   {
-    name: 'purchase-basket',
+    name: 'PurchaseBasket',
     component: PurchaseBasket,
     options: {
       tabBarLabel: `${i18next.t('gl.purchaseBasket')}`,
@@ -128,28 +142,3 @@ export const routes = [
     },
   },
 ];
-
-// {
-//   name: 'unauthorized',
-//   component: Unauthorized,
-//   options: {
-//     headerShown: false,
-//     ...dontShowTabBar,
-//   },
-// },
-// {
-//   name: 'test',
-//   component: Test,
-//   options: {
-//     tabBarLabel: 'test',
-//     title: 'test',
-//   },
-// },
-// {
-//   name: 'category-item',
-//   component: CategoryItem,
-//   options: {
-//     tabBarLabel: `${i18next.t('gl.search')}`,
-//     title: `${i18next.t('gl.search')}`,
-//   },
-// },

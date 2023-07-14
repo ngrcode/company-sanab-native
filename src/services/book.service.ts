@@ -9,6 +9,7 @@ import {
   boughtBooksByUserUrl,
   addBookToLibraryUrl,
   boughtBooksUrl,
+  putPageNumberBookUrl,
 } from 'services/urls/book.urls';
 
 const bookApi = api.injectEndpoints({
@@ -68,6 +69,16 @@ const bookApi = api.injectEndpoints({
         };
       },
     }),
+    putBookPageNumber: build.mutation({
+      query: (props: any) => {
+        const {page, bookId} = props;
+        return {
+          url: putPageNumberBookUrl(bookId),
+          method: 'PUT',
+          body: {pageNumber: page},
+        };
+      },
+    }),
   }),
   overrideExisting: false,
 });
@@ -81,5 +92,6 @@ export const {
   useGetBoughtsBooksQuery,
   useGetSearchBooksQuery,
   usePostBuyBookMutation,
+  usePutBookPageNumberMutation,
   usePostAddBookToLibraryMutation,
 } = bookApi;

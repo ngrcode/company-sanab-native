@@ -41,7 +41,6 @@ function Category({navigation}: any) {
     });
     return unsubscribe;
   }, [navigation]);
-
   return <View>{renderRoutes(route?.params?.name)}</View>;
 }
 

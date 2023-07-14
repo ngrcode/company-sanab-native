@@ -3,11 +3,12 @@ import {ScrollView, BackHandler, Text, View} from 'react-native';
 import BooksHList from 'components/BooksHList';
 import {useGetCategoryBooksQuery} from 'services/category.service';
 import Loading from 'components/Loading';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const CategoryHBooks = (props: any, ref: any) => {
   const {category} = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const {data, isLoading, isSuccess, refetch} = useGetCategoryBooksQuery({
     id: category?.id,
   });
@@ -19,7 +20,7 @@ const CategoryHBooks = (props: any, ref: any) => {
   }));
 
   return (
-    <View>
+    <>
       <Loading loading={isLoading} />
       {isSuccess && (
         <BooksHList
@@ -34,7 +35,7 @@ const CategoryHBooks = (props: any, ref: any) => {
           books={data?.data}
         />
       )}
-    </View>
+    </>
   );
 };
 

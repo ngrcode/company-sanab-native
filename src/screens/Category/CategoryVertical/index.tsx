@@ -12,13 +12,15 @@ import {
 } from 'services/category.service';
 import BooksVList from 'components/BooksVList';
 import Loading from 'components/Loading';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
 import Button from 'components/Button';
 import {useDispatch} from 'react-redux';
 
 function CategoryVertical(props: any) {
   const {paramsRoute, exParams, setExParams} = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
   const {categoryId, categoryName, boughtBooks} = paramsRoute;
@@ -30,7 +32,6 @@ function CategoryVertical(props: any) {
     },
     {skip: categoryId ? false : true},
   );
-
   // const {data: boughtBooksData, refetch: refetchMyBooks} =
   //   useGetBoughtsBooksQuery(
   //     {

@@ -37,6 +37,7 @@ export const theme = {
     },
     blue: {
       0: '#16BAC5',
+      1: '#16BAC533',
     },
     gray: {
       0: '#A9A9A9',

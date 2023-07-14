@@ -2,7 +2,8 @@ import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {Text, View, Image, Pressable} from 'react-native';
 import {Shadow} from 'react-native-shadow-2';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {handleModalBook} from 'stores/slices/common.slices';
 import Button from 'components/Button';
@@ -11,7 +12,7 @@ import {styles} from './style';
 
 function BooksVList(props: any) {
   const {books, headerTitle} = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -39,21 +39,23 @@ export async function setupPlayer() {
   }
 }
 
-export async function addTracks() {
+export async function addTracks(track) {
+  const {src, name} = track;
+
   await TrackPlayer.add([
     {
       id: '1',
-      url: require('./../assets/mp3/aminBani.mp3'),
-      title: 'sharhrzad',
-      artist: 'aminbani',
-      duration: 280,
+      url: src,
+      title: name,
+      artist: 'name',
+      duration: 10,
     },
     {
-      id: '2',
-      url: require('./../assets/mp3/sound.mp3'),
-      title: 'phone ring',
-      artist: 'no body',
-      duration: 60,
+      id: '1',
+      url: src,
+      title: name,
+      artist: 'name',
+      duration: 10,
     },
   ]);
   await TrackPlayer.setRepeatMode(RepeatMode.Queue);

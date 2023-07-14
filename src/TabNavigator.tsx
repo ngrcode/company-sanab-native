@@ -6,7 +6,6 @@ import {StyleSheet} from 'react-native';
 
 import {tabBarName} from 'utils/common.utils';
 import {theme} from 'shared/theme';
-import {tabBarStyle} from 'utils/common.utils';
 import TabBarHeader from 'components/ScreenHeader';
 import BookModal from 'components/BookModal';
 import {routes} from './routes';
@@ -17,9 +16,14 @@ const styles = (props?: any) =>
       color: props.focused ? theme.colors.blue[0] : theme.colors.gray[0],
       fontSize: 20,
     },
+    img: {
+      width: 90,
+      height: 140,
+      marginLeft: 8,
+    },
   });
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<any>();
 
 export default function TabNavigator() {
   const {colors} = useTheme();
@@ -29,12 +33,22 @@ export default function TabNavigator() {
       <BookModal />
       <Tab.Navigator
         backBehavior="history"
-        initialRouteName="audio-book"
+        initialRouteName="home"
         sceneContainerStyle={{
           backgroundColor: colors.gray[4],
         }}
-        screenOptions={({route, navigation, options}: any) => ({
-          tabBarStyle: tabBarStyle(route),
+        screenOptions={({route}: any) => ({
+          tabBarStyle: {
+            backgroundColor: theme.colors.gray[4],
+            borderTopColor: theme.colors.gray[7],
+            display:
+              route.name === 'PaymentsHistory' ||
+              route.name === 'splash' ||
+              route.name === 'Book'
+                ? 'none'
+                : 'flex',
+          },
+          /* eslint-disable-next-line react/no-unstable-nested-components, @typescript-eslint/no-shadow */
           header: ({route, navigation, options}: any) => {
             return (
               <TabBarHeader
@@ -44,7 +58,8 @@ export default function TabNavigator() {
               />
             );
           },
-          tabBarIcon: ({focused}) => (
+          /*eslint-disable-next-line react/no-unstable-nested-components*/
+          tabBarIcon: ({focused}: {focused: boolean}) => (
             <Icon
               name={tabBarName(route)}
               style={styles({focused: focused}).icon}

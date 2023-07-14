@@ -15,7 +15,8 @@ import {profileInfo2, profileInfo} from 'utils/profile.utils';
 import {RootState} from 'stores/store';
 import ProfileModal from './ProfileModal';
 import Icon from 'react-native-vector-icons/Fontisto';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {
   useAuthMutation,
   usePostConfirmCodeMutation,
@@ -38,7 +39,7 @@ function Item(props: any) {
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const selector = useSelector((state: RootState) => state.common);
   const currentUser = selector?.curUser;
   const [modalVisible, setModalVisible] = useState(false);

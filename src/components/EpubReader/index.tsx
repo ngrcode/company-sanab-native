@@ -1,23 +1,16 @@
 import * as React from 'react';
+import {SafeAreaView} from 'react-native';
+import {ReaderProvider} from '@epubjs-react-native/core';
 
-import {SafeAreaView, useWindowDimensions} from 'react-native';
-import {Reader, ReaderProvider} from '@epubjs-react-native/core';
-import {useFileSystem} from '@epubjs-react-native/file-system';
+import ReaderComponent from './ReaderComponent';
 
-export default function App(props) {
-  const {epubSrc} = props;
-  const {width, height} = useWindowDimensions();
+export default function EpubReader(props: any) {
+  const {epubSrc, page, setPage} = props;
+
   return (
     <SafeAreaView>
       <ReaderProvider>
-        <Reader
-          // src="https://s3.amazonaws.com/moby-dick/OPS/package.opf"
-          src={epubSrc}
-          enableSwipe={true}
-          width={width}
-          height={height}
-          fileSystem={useFileSystem}
-        />
+        <ReaderComponent epubSrc={epubSrc} page={page} setPage={setPage} />
       </ReaderProvider>
     </SafeAreaView>
   );

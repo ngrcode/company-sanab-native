@@ -16,21 +16,12 @@ export const tabBarName = (route: any) => {
   return name;
 };
 
-export const tabBarStyle = (route: any) => ({
-  backgroundColor: theme.colors.gray[4],
-  borderTopColor: theme.colors.gray[7],
-  display:
-    route.name === 'payments-history' || route.name === 'splash'
-      ? 'none'
-      : 'flex',
-});
-
 export const backHandlerMethod = (
   navigation: any,
   navigateTo: string,
   navigationParam: any,
 ) => {
-  const backAction = (e: any) => {
+  const backAction = () => {
     navigationParam
       ? navigation.navigate(navigateTo, navigationParam)
       : navigation.navigate(navigateTo);

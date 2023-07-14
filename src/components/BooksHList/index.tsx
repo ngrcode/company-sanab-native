@@ -6,13 +6,17 @@ import {Shadow} from 'react-native-shadow-2';
 import {styles} from './style';
 import MoreTitle from 'components/MoreTitle';
 import {handleModalBook} from 'stores/slices/common.slices';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const BooksHList = (props: any) => {
   const {title, books, onPressMore, isFetching, ...rest} = props;
   const dispatch = useDispatch();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   const clickBookImg = async (id: string) => {
-    dispatch(handleModalBook({show: true, bookId: id}));
+    // dispatch(handleModalBook({show: true, bookId: id}));
+    navigation.navigate('Book', {bookId: id});
   };
 
   return (

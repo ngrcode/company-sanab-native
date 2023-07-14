@@ -1,29 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Button,
-  ActivityIndicator,
-  Text,
-  View,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View} from 'react-native';
 import TrackPlayer, {
   useProgress,
   useTrackPlayerEvents,
   Event,
   State,
 } from 'react-native-track-player';
-import {styles, stylesFunc} from './style';
-import TrackInfo from 'components/TrackPlayerAudio/Info';
 import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Slider from '@react-native-community/slider';
 
+import {styles} from './style';
+
 const events = [Event.PlaybackState, Event.PlaybackError];
 
 function ProgressBar() {
-  const {position, duration, buffered} = useProgress(200);
+  const {position, duration} = useProgress(200);
   const [playerState, setPlayerState] = useState(null);
 
   function format(seconds: any) {
@@ -34,7 +27,6 @@ function ProgressBar() {
     return `${mins}:${secs}`;
   }
 
-  console.log(position, duration, buffered);
   useTrackPlayerEvents(events, event => {
     if (event.type === Event.PlaybackError) {
       console.warn('An error occured while playing the current track.');
@@ -49,17 +41,20 @@ function ProgressBar() {
   return (
     <>
       <Slider
-        style={{width: 200, height: 40}}
+        style={{width: '100%', height: 40, marginTop: 58}}
         minimumValue={0}
-        maximumValue={1}
-        minimumTrackTintColor="red"
-        maximumTrackTintColor="blue"
-        lowerLimit={5}
-        upperLimit={30}
-        minimumValue={10}
-        onValueChange={() => console.log('yeeeeeeeeeeeeee')}
+        maximumValue={duration}
+        minimumTrackTintColor="#16BAC5"
+        thumbTintColor="#16BAC5"
+        maximumTrackTintColor="#DDDDDD"
+        lowerLimit={0}
+        onValueChange={e => TrackPlayer.seekTo(e)}
+        value={position}
       />
-      <SafeAreaView style={styles.container}>
+      <View style={styles.sliderTimeBlock}>
+        <Text style={styles.duration}>{format(duration)}</Text>
+      </View>
+      <View style={styles.iconsBlock}>
         <Icon
           name="skip-previous"
           style={{fontSize: 30}}
@@ -85,19 +80,7 @@ function ProgressBar() {
           style={{fontSize: 30}}
           onPress={() => TrackPlayer.skipToNext()}
         />
-      </SafeAreaView>
-      <View style={styles.bar}>
-        <View
-        // style={stylesFunc(`${(position / duration) * 100}`).playerPosition}
-        />
-        <View
-        // style={stylesFunc(`${(position / duration) * 100}`).fullBar}
-        />
       </View>
-      {/* <Text style={styles.trackProgress}>
-        {format(position)} / {format(duration)}
-      </Text>
-      <Text> {isPlaying ? 'playing' : 'not playing'}</Text> */}
     </>
   );
 }

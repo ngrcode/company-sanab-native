@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 
 export const loginOrRegisterInfo = [
-  {id: 0, title: 'تماس با ما', navigateTo: 'contact-us'},
+  {id: 0, title: 'تماس با ما', navigateTo: 'ContactUs'},
   {id: 1, title: 'درباره سناب', navigateTo: 'about'},
-  {id: 2, title: 'به روزرسانی', desc: 'نسخه 9.0.5', navigateTo: 'contact-us'},
+  {id: 2, title: 'به روزرسانی', desc: 'نسخه 9.0.5', navigateTo: 'ContactUs'},
 ];
 
 export const validateSchema = (showRecovery: any) => {

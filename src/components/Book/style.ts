@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 24,
     marginLeft: 24,
+    marginBottom: 30,
   },
   imgWrapper: {
     elevation: 5,
@@ -51,19 +52,6 @@ export const styles = StyleSheet.create({
     lineHeight: 19,
     color: theme.colors.gray[0],
     marginTop: 12,
-  },
-  btnBlock: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: theme.colors.blue[0],
-  },
-  angleLeftIcon: {
-    color: theme.colors.blue[0],
-  },
-  readSample: {
-    color: theme.colors.blue[0],
   },
   shareIconBlock: {
     display: 'flex',
