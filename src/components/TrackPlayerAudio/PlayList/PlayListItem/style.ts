@@ -41,17 +41,7 @@ export const styles = StyleSheet.create({
     marginRight: 16,
     alignItems: 'center',
   },
-  volume: {
-    color: theme.colors.gray[5],
-  },
-  downloadBlock: {
-    fontSize: 11,
-    flexDirection: 'row-reverse',
-    alignItems: 'center',
-  },
-  downloadIcon: {
-    fontSize: 16,
-    color: theme.colors.gray[5],
-    marginRight: 4,
-  },
+
+
+
 });

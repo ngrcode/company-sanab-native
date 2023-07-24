@@ -20,7 +20,8 @@ export default function FilesBlock(props: any) {
           <Pressable
             style={styles.audio}
             onPress={() =>
-              navigation.navigate('AudioBook', {id: bookData?.files[0].uuid})
+              // navigation.navigate('AudioBook', {id: bookData?.files[0].uuid})
+              navigation.navigate('AudioBook', {id: bookData?.id})
             }>
             <View style={styles.btnBlock}>
               <Icon name="angle-left" style={styles.angleLeftIcon} />

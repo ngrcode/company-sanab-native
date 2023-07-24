@@ -4,6 +4,7 @@ import TrackPlayer, {
   RepeatMode,
   Event,
 } from 'react-native-track-player';
+import song from 'assets/mp3/two.mp3';
 
 export async function setupPlayer() {
   let isSetup = false;
@@ -40,7 +41,7 @@ export async function setupPlayer() {
 }
 
 export async function addTracks(track) {
-  const {src, name} = track;
+  const {src, name, duration} = track;
 
   await TrackPlayer.add([
     {
@@ -48,14 +49,7 @@ export async function addTracks(track) {
       url: src,
       title: name,
       artist: 'name',
-      duration: 10,
-    },
-    {
-      id: '1',
-      url: src,
-      title: name,
-      artist: 'name',
-      duration: 10,
+      duration: duration,
     },
   ]);
   await TrackPlayer.setRepeatMode(RepeatMode.Queue);

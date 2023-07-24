@@ -29,24 +29,4 @@ export const styles = StyleSheet.create({
     color: theme.colors.gray[5],
     fontSize: 11,
   },
-  downloadIcon: {
-    color: theme.colors.blue[0],
-    fontSize: 20,
-  },
-  downloadAll: {
-    color: theme.colors.blue[0],
-    fontSize: 11,
-    borderTopColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderLeftColor: theme.colors.blue[0],
-    borderStyle: 'solid',
-    borderWidth: 1,
-    padding: 4,
-    marginHorizontal: 4,
-  },
-  volume: {
-    color: theme.colors.blue[0],
-    fontSize: 11,
-  },
 });

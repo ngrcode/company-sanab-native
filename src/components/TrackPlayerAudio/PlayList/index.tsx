@@ -11,7 +11,8 @@ import {styles} from './style';
 import PlayListItem from './PlayListItem';
 import PlayListMiddle from 'components/TrackPlayerAudio/PlayList/PlayListMiddle';
 
-const Playlist = () => {
+const Playlist = (props: any) => {
+  const {bookData, refreshing, handleRefreshing} = props;
   const [queue, setQueue] = useState([]);
   const [currentTrack, setCurrentTrack] = useState(0);
 
@@ -33,15 +34,18 @@ const Playlist = () => {
 
   return (
     <View style={styles.container}>
-      <PlayListImg />
-      <PlayListMiddle />
+      <PlayListImg bookData={bookData} />
+      <PlayListMiddle bookData={bookData} />
       <View style={styles.playlist}>
         <FlatList
           data={queue}
+          onRefresh={handleRefreshing}
+          refreshing={refreshing}
           renderItem={({item, index}) => (
             <PlayListItem
               index={index}
               title={item.title}
+              url={item.url}
               isCurrent={currentTrack == index}
             />
           )}

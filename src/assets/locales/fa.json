@@ -17,7 +17,8 @@
     "noData": "دیتایی یافت نشد!",
     "add": "افزودن",
     "loading": "درحال بارگذاری ....",
-    "addComment": "افزودن نظر"
+    "addComment": "افزودن نظر",
+    "remainingTime": "زمان باقی مانده"
   },
   "auth": {
     "enterAccount": "ورود به حساب کاربری",

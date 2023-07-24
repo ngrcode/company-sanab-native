@@ -1,25 +1,37 @@
 import React from 'react';
-import {View, Text, Image, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import {styles} from './style';
-import {useRoute, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Octicons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 
-import Book3 from 'assets/images/temporary/three.png';
 import TrackPlayerAudio from 'components/TrackPlayerAudio';
+import ControlSpeed from 'screens/AudioBook/Main/ControlSpeed';
 
 const Main = (props: any) => {
+  const {bookData, handleRefreshing, refreshing} = props;
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const route = useRoute();
-  const {params} = route;
 
   return (
-    <>
-      <Image style={styles.img} source={Book3} />
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={handleRefreshing} />
+      }>
+      <Image
+        style={styles.img}
+        source={{uri: `${process.env.BASE_URL}/files/${bookData.image}`}}
+      />
       <View style={styles.block}>
-        <Text style={styles.imgTitle}>قسمت اول</Text>
+        <Text style={styles.imgTitle}>{bookData.name}</Text>
         <Text style={styles.imgNumber}>1/12</Text>
       </View>
       <View style={styles.iconsBlock}>
@@ -27,10 +39,7 @@ const Main = (props: any) => {
           <Icon name="clock" style={styles.iconClock} />
           <Text style={styles.iconText}>دانلود فایل</Text>
         </View>
-        <View style={styles.iconBlock}>
-          <IconAntDesign name="download" style={styles.iconDownload} />
-          <Text style={styles.iconText}>سرعت خواندن</Text>
-        </View>
+        <ControlSpeed />
         <Pressable
           style={styles.iconBlock}
           onPress={() => navigation.navigate('AudioBook', {param: 'list'})}>
@@ -38,8 +47,8 @@ const Main = (props: any) => {
           <Text style={styles.iconText}>فهرست</Text>
         </Pressable>
       </View>
-      <TrackPlayerAudio />
-    </>
+      <TrackPlayerAudio bookData={bookData} />
+    </ScrollView>
   );
 };
 

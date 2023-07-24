@@ -17,6 +17,7 @@
     "noData": "No Data Found",
     "add": "Add",
     "loading": "Loading ...",
+    "remainingTime": "Remaining Time",
     "addComment": "Add Comment"
   },
   "auth": {

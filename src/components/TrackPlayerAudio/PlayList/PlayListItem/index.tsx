@@ -11,17 +11,21 @@ import {
 } from 'react-native';
 import TrackPlayer, {
   useTrackPlayerEvents,
+  useProgress,
+  Capability,
   Event,
   State,
 } from 'react-native-track-player';
 import Icon from 'react-native-vector-icons/Octicons';
-import IconIonicons from 'react-native-vector-icons/Ionicons';
 import {useTheme} from '@react-navigation/native';
 
 import {styles} from './style';
+import PlayListDownload from 'components/TrackPlayerAudio/PlayList/PlayListDownload';
+import {formatDuration} from 'utils/common.utils';
 
-const PlayListItem = ({index, title, isCurrent}: any) => {
+const PlayListItem = ({index, title, isCurrent, url}: any) => {
   const {colors} = useTheme();
+  const {duration} = useProgress(200);
 
   function handleItemPress() {
     TrackPlayer.skip(index);
@@ -39,15 +43,12 @@ const PlayListItem = ({index, title, isCurrent}: any) => {
         <View style={styles.titleBlock}>
           <Text style={styles.titleText}>{title}</Text>
           <View style={styles.iconClockBlock}>
-            <Text style={styles.time}>08:43</Text>
+            <Text style={styles.time}>{formatDuration(duration)}</Text>
             <Icon name="clock" style={styles.iconClock} />
           </View>
         </View>
       </View>
-      <View style={styles.downloadBlock}>
-        <Text style={styles.volume}>11/4 MB</Text>
-        <IconIonicons name="download-outline" style={styles.downloadIcon} />
-      </View>
+      <PlayListDownload url={url} title={title} />
     </TouchableOpacity>
   );
 };

@@ -12,20 +12,13 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Slider from '@react-native-community/slider';
 
 import {styles} from './style';
+import {formatDuration} from 'utils/common.utils';
 
 const events = [Event.PlaybackState, Event.PlaybackError];
 
 function ProgressBar() {
   const {position, duration} = useProgress(200);
   const [playerState, setPlayerState] = useState(null);
-
-  function format(seconds: any) {
-    let mins = parseInt(seconds / 60)
-      .toString()
-      .padStart(2, '0');
-    let secs = (Math.trunc(seconds) % 60).toString().padStart(2, '0');
-    return `${mins}:${secs}`;
-  }
 
   useTrackPlayerEvents(events, event => {
     if (event.type === Event.PlaybackError) {
@@ -52,7 +45,7 @@ function ProgressBar() {
         value={position}
       />
       <View style={styles.sliderTimeBlock}>
-        <Text style={styles.duration}>{format(duration)}</Text>
+        <Text style={styles.duration}>{formatDuration(duration)}</Text>
       </View>
       <View style={styles.iconsBlock}>
         <Icon

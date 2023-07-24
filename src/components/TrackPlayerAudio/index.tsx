@@ -2,9 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ActivityIndicator, View, Text} from 'react-native';
 import TrackPlayer, {
   useProgress,
-  useTrackPlayerEvents,
-  Event,
   State,
+  usePlaybackState,
 } from 'react-native-track-player';
 import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
@@ -14,13 +13,14 @@ import Slider from '@react-native-community/slider';
 import {setupPlayer, addTracks} from 'lib/trackPlayerServices';
 import {styles} from './style';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {formatDuration} from 'utils/common.utils';
 
-const events = [Event.PlaybackState, Event.PlaybackError];
-
-const TrackPlayerAudio = () => {
+const TrackPlayerAudio = (props: any) => {
+  const {bookData} = props;
   const [isPlayerReady, setIsPlayerReady] = useState(false);
-  const [playerState, setPlayerState] = useState(null);
-  const {position, duration} = useProgress(200);
+  const playerState = usePlaybackState();
+  const progress = useProgress(200);
+  const {position, duration} = progress;
   const route = useRoute();
   const {params} = route;
   const navigation = useNavigation();
@@ -31,37 +31,21 @@ const TrackPlayerAudio = () => {
       const queue = await TrackPlayer.getQueue();
       if (isSetup && queue.length <= 0) {
         await addTracks({
-          src: `${process.env.BASE_URL}/files/${params.id}`,
-          name: 'negar',
+          src: `${process.env.BASE_URL}/files/${bookData.files[0].uuid}`,
+          name: bookData.files[0].name,
+          duration: formatDuration(duration),
         });
       }
       setIsPlayerReady(isSetup);
     }
     setup();
-  }, [params]);
+  }, [params, duration]);
 
   useEffect(() => {
     navigation.addListener('blur', () => {
       TrackPlayer.reset();
     });
   }, [navigation]);
-
-  function format(seconds: any) {
-    let mins = parseInt(seconds / 60)
-      .toString()
-      .padStart(2, '0');
-    let secs = (Math.trunc(seconds) % 60).toString().padStart(2, '0');
-    return `${mins}:${secs}`;
-  }
-
-  useTrackPlayerEvents(events, event => {
-    if (event.type === Event.PlaybackError) {
-      console.warn('An error occured while playing the current track.');
-    }
-    if (event.type === Event.PlaybackState) {
-      setPlayerState(event.state);
-    }
-  });
 
   if (!isPlayerReady) {
     return (
@@ -87,7 +71,7 @@ const TrackPlayerAudio = () => {
         value={position}
       />
       <View style={styles.sliderTimeBlock}>
-        <Text style={styles.duration}>{format(duration)}</Text>
+        <Text style={styles.duration}>{formatDuration(duration)}</Text>
       </View>
       <View style={styles.iconsBlock}>
         <Icon
