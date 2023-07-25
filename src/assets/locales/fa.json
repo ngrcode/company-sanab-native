@@ -18,7 +18,9 @@
     "add": "افزودن",
     "loading": "درحال بارگذاری ....",
     "addComment": "افزودن نظر",
-    "remainingTime": "زمان باقی مانده"
+    "remainingTime": "زمان باقی مانده",
+    "cancel": "انصراف",
+    "confirm": "تایید"
   },
   "auth": {
     "enterAccount": "ورود به حساب کاربری",

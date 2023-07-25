@@ -16,6 +16,11 @@ export const styles = StyleSheet.create({
     height: 64,
     justifyContent: 'space-between',
   },
+  downloadIcon: {
+    fontSize: 16,
+    color: theme.colors.gray[5],
+    marginRight: 4,
+  },
   IndexTitleBlock: {
     flexDirection: 'row-reverse',
   },
@@ -41,7 +46,4 @@ export const styles = StyleSheet.create({
     marginRight: 16,
     alignItems: 'center',
   },
-
-
-
 });

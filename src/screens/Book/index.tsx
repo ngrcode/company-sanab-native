@@ -42,7 +42,7 @@ const Book = (props: any) => {
   const theme = useTheme();
   const {t} = useTranslation();
   const common = useSelector((state: RootState) => state.common);
-  const {token, curUser, modalBook} = common;
+  const {token, curUser} = common;
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const [publisherId, setPublisherId] = useState(null);
   const [authorId, setAuthorId] = useState(null);
@@ -105,6 +105,10 @@ const Book = (props: any) => {
     await getBookData();
     setRefreshing(false);
   };
+
+  useEffect(() => {
+    getBookData();
+  }, [bookId]);
 
   return (
     <>

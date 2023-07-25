@@ -47,7 +47,10 @@ export default function FilesBlock(props: any) {
               setShowPdf={setShowPdf}
               fileSrc={`${process.env.BASE_URL}/files/${bookData?.files[0]?.path}`}
               bookId={bookData.id}
-              pageNumber={bookData.pageNumber}
+              pageCfi={{
+                cfi: bookData.cfi || '',
+                pageNumber: bookData.pageNumber || 0,
+              }}
             />
           </>
         ))}

@@ -16,6 +16,7 @@ import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import TrackPlayerAudio from 'components/TrackPlayerAudio';
 import ControlSpeed from 'screens/AudioBook/Main/ControlSpeed';
+import PlayListDownload from 'components/TrackPlayerAudio/PlayList/PlayListDownload';
 
 const Main = (props: any) => {
   const {bookData, handleRefreshing, refreshing} = props;
@@ -37,7 +38,14 @@ const Main = (props: any) => {
       <View style={styles.iconsBlock}>
         <View style={styles.iconBlock}>
           <Icon name="clock" style={styles.iconClock} />
-          <Text style={styles.iconText}>دانلود فایل</Text>
+
+          <PlayListDownload
+            url={`${process.env.BASE_URL}/files/${bookData.files[0].uuid}`}
+            title={bookData.files[0].name}
+            iconStyles={{display: 'none'}}
+            volumeStyles={{display: 'none'}}>
+            <Text style={styles.iconText}>دانلود فایل</Text>
+          </PlayListDownload>
         </View>
         <ControlSpeed />
         <Pressable

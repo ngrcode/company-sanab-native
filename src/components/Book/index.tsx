@@ -79,7 +79,6 @@ const Book = () => {
   //       from: `${process.env.BASE_URL}/books/${bookData?.id}`,
   //     },
   //   }).then((res: any) => {
-  //     console.info(res);
   //   });
   // };
 
@@ -92,8 +91,8 @@ const Book = () => {
 
   useEffect(() => {
     getBookData();
-  }, [2000]);
-
+  }, [bookId]);
+  console.log('------------');
   return (
     <>
       {typeof publisherId !== 'string' || isFetchingPublisherBooks ? (

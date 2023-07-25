@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   downloadBlock: {
     fontSize: 11,
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
   },
   imgBlock: {
@@ -35,11 +35,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     marginTop: 21,
   },
-  downloadIcon: {
-    fontSize: 16,
-    color: theme.colors.gray[5],
-    marginRight: 4,
-  },
+
   trackProgress: {
     marginTop: 40,
     textAlign: 'center',

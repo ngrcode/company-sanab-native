@@ -28,9 +28,12 @@ function PlayListMiddle(props: any) {
       <PlayListDownload
         url={`${process.env.BASE_URL}/files/${files[0].uuid}`}
         title={files[0].name}
-        iconStyles={{color: theme.colors.blue[0], fontSize: 16}}
-        volumeStyles={{color: theme.colors.blue[0], fontSize: 11}}
-      />
+        volumeStyles={{color: theme.colors.blue[0], fontSize: 11}}>
+        <IconIonicons
+          name="download-outline"
+          style={{color: theme.colors.blue[0], fontSize: 16}}
+        />
+      </PlayListDownload>
     </View>
   );
 }

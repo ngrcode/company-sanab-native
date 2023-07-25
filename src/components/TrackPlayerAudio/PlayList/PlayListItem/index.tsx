@@ -18,6 +18,7 @@ import TrackPlayer, {
 } from 'react-native-track-player';
 import Icon from 'react-native-vector-icons/Octicons';
 import {useTheme} from '@react-navigation/native';
+import IconIonicons from 'react-native-vector-icons/Ionicons';
 
 import {styles} from './style';
 import PlayListDownload from 'components/TrackPlayerAudio/PlayList/PlayListDownload';
@@ -48,7 +49,9 @@ const PlayListItem = ({index, title, isCurrent, url}: any) => {
           </View>
         </View>
       </View>
-      <PlayListDownload url={url} title={title} />
+      <PlayListDownload url={url} title={title}>
+        <IconIonicons name="download-outline" style={styles.downloadIcon} />
+      </PlayListDownload>
     </TouchableOpacity>
   );
 };

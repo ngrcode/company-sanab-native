@@ -18,7 +18,9 @@
     "add": "Add",
     "loading": "Loading ...",
     "remainingTime": "Remaining Time",
-    "addComment": "Add Comment"
+    "addComment": "Add Comment",
+    "cancel": "cancel",
+    "confirm": "confirm"
   },
   "auth": {
     "enterAccount": "Login To Account",

@@ -15,9 +15,9 @@ export default function PdfReader(props: any) {
         trustAllCerts={false}
         source={source}
         onPageChanged={(page: any) => {
-          setCurPage(page);
+          setCurPage({pageNumber: page, cfi: ''});
         }}
-        page={curPage}
+        page={curPage.pageNumber}
         style={styles.pdf}
       />
     </View>

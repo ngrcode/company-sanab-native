@@ -71,11 +71,11 @@ const bookApi = api.injectEndpoints({
     }),
     putBookPageNumber: build.mutation({
       query: (props: any) => {
-        const {page, bookId} = props;
+        const {pageAndCfi, bookId} = props;
         return {
           url: putPageNumberBookUrl(bookId),
           method: 'PUT',
-          body: {pageNumber: page},
+          body: pageAndCfi,
         };
       },
     }),

@@ -1,16 +1,12 @@
-import React, {useState} from 'react';
-import {View, Text, Pressable} from 'react-native';
-import Icon from 'react-native-vector-icons/Fontisto';
-import IconAnt from 'react-native-vector-icons/AntDesign';
-import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import React, {useState} from 'react';
+import {Pressable, Text, View} from 'react-native';
+import Icon from 'react-native-vector-icons/Fontisto';
 
-import PdfReader from 'components/PdfReader';
-import EpubReader from 'components/EpubReader';
-import Button from 'components/Button';
 import PdfModal from 'components/Book/PdfModal';
+import Button from 'components/Button';
 import {styles} from './style';
-import AudioBook from 'screens/AudioBook';
 
 export default function FilesBlock(props: any) {
   const {bookData} = props;

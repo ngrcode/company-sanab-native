@@ -6,9 +6,8 @@ import {useFileSystem} from '@epubjs-react-native/file-system';
 export default function ReaderComponent(props: any) {
   const {epubSrc, page, setPage} = props;
   const {width, height} = useWindowDimensions();
-
   const onLocationChange = (e: any, a: any) => {
-    setPage(a.start.cfi);
+    setPage({cfi: a.start.cfi, pageNumber: 0});
   };
 
   return (
@@ -18,7 +17,7 @@ export default function ReaderComponent(props: any) {
       width={width}
       height={height}
       fileSystem={useFileSystem}
-      initialLocation={page}
+      initialLocation={page.cfi}
       onLocationChange={(e: any, a: any) => onLocationChange(e, a)}
     />
   );

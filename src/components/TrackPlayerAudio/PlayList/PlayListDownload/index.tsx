@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Pressable} from 'react-native';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import RNFetchBlob, {base64DataString} from 'rn-fetch-blob';
 
 import {styles} from './style';
 
 const PlayListDownload = (props: any) => {
-  const {url, title, iconStyles, volumeStyles} = props;
+  const {url, title, iconStyles, volumeStyles, children} = props;
   const [audioSize, setAudioSize] = useState(0);
 
   const getSize = async () => {
@@ -56,12 +56,15 @@ const PlayListDownload = (props: any) => {
 
   return (
     <View style={styles.downloadBlock}>
-      <Text style={volumeStyles || styles.volume}>{audioSize}</Text>
-      <IconIonicons
+      <Pressable style={styles.downloadBlock} onPress={downloadHandler}>
+        {/* <IconIonicons
         name="download-outline"
         style={iconStyles || styles.downloadIcon}
         onPress={downloadHandler}
-      />
+      /> */}
+        {children}
+        <Text style={volumeStyles || styles.volume}>{audioSize}</Text>
+      </Pressable>
     </View>
   );
 };

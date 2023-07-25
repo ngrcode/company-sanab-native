@@ -8,16 +8,16 @@ import EpubReader from 'components/EpubReader';
 import {usePutBookPageNumberMutation} from 'services/book.service';
 
 export default function PdfModal(props: any) {
-  const {showPdf, setShowPdf, fileSrc, bookId, pageNumber} = props;
-  const [page, setPage] = useState(pageNumber);
+  const {showPdf, setShowPdf, fileSrc, bookId, pageCfi} = props;
+  const [pageAndCfi, setPageAndCfi] = useState(pageCfi);
   const [putPageNumber, {data}] = usePutBookPageNumberMutation();
 
   const extension = fileSrc.split('/').pop().split('.').pop();
 
   useEffect(() => {
-    setPage(pageNumber);
-  }, [pageNumber]);
-
+    setPageAndCfi(pageAndCfi);
+  }, [pageAndCfi]);
+  console.log(pageAndCfi.cfi);
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -33,15 +33,24 @@ export default function PdfModal(props: any) {
             style={styles.closeIcon}
             onPress={() => {
               setShowPdf(false);
-              putPageNumber({page, bookId}).then((res: any) => {
-                console.info(res);
+              putPageNumber({pageAndCfi, bookId}).then((res: any) => {
+                console.info('res', res);
+                console.info('error', res?.error);
               });
             }}
           />
           {extension === 'pdf' ? (
-            <PdfReader pdfUri={fileSrc} curPage={page} setCurPage={setPage} />
+            <PdfReader
+              pdfUri={fileSrc}
+              curPage={pageAndCfi}
+              setCurPage={setPageAndCfi}
+            />
           ) : (
-            <EpubReader epubSrc={fileSrc} page={page} setPage={setPage} />
+            <EpubReader
+              epubSrc={fileSrc}
+              page={pageAndCfi}
+              setPage={setPageAndCfi}
+            />
           )}
         </View>
       </Modal>
