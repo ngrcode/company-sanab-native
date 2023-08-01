@@ -61,8 +61,7 @@ const bookApi = api.injectEndpoints({
       },
     }),
     postAddBookToLibrary: build.mutation({
-      query: (props: any) => {
-        const {id} = props;
+      query: (id: any) => {
         return {
           url: addBookToLibraryUrl(id),
           method: 'POST',

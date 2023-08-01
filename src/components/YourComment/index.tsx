@@ -1,18 +1,24 @@
 import Button from 'components/Button';
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, Pressable} from 'react-native';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import UsersComment from 'components/UsersComment';
 import {useTranslation} from 'react-i18next';
+import {useNavigation} from '@react-navigation/native';
+
+import CommentForm from 'components/YourComment/CommentForm';
 
 function YourComments(props: any) {
-  const {title, desc, comments, btn} = props;
+  const {title, desc, comments, btn, bookData, refetchCommentsBook} = props;
+  const navigation = useNavigation();
   const {t} = useTranslation();
 
   return (
     <>
-      {comments?.length > 0 && <UsersComment arr={comments} />}
+      {comments?.length > 0 && (
+        <UsersComment arr={comments} headTitle="نظرات شما" />
+      )}
       <View style={styles.yourCommentBlock}>
         <Text style={styles.subTitle}>{t('gl.addComment')}</Text>
         <View style={styles.container}>
@@ -21,10 +27,11 @@ function YourComments(props: any) {
             btnType="blueBorderNoBg"
             width={148}
             title={
-              <View style={styles.btn}>
-                <Text style={styles.btnTitle}>{btn}</Text>
-                <Icon name="edit" style={styles.btnIcon} />
-              </View>
+              <CommentForm
+                btn={btn}
+                bookData={bookData}
+                refetchCommentsBook={refetchCommentsBook}
+              />
             }
             height={45}
           />

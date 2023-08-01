@@ -18,6 +18,17 @@ const commentApi = api.injectEndpoints({
         return userCommentsUrl(id);
       },
     }),
+    postComment: build.mutation({
+      query: (props: any) => {
+        const {bookId, values} = props;
+        console.log(props, props.values);
+        return {
+          url: bookCommentsUrl(bookId),
+          method: 'POST',
+          body: values,
+        };
+      },
+    }),
   }),
   overrideExisting: false,
 });
@@ -26,4 +37,5 @@ export const {
   useGetCommentsQuery,
   useGetBookCommentsQuery,
   useGetUserCommentsQuery,
+  usePostCommentMutation,
 } = commentApi;

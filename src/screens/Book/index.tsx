@@ -46,9 +46,11 @@ const Book = (props: any) => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const [publisherId, setPublisherId] = useState(null);
   const [authorId, setAuthorId] = useState(null);
-  const {data: bookData, refetch: getBookData} = useGetBookQuery(bookId);
-  const {data: bookCommentsData} = useGetBookCommentsQuery(bookId);
-  const {data: userCommentsData} = useGetUserCommentsQuery(curUser.id);
+  const {data: bookData, refetch: refetchBookData} = useGetBookQuery(bookId);
+  const {data: bookCommentsData, refetch: refetchCommentsBook} =
+    useGetBookCommentsQuery(bookId);
+  const {data: userCommentsData, refetch: refetchCommetsUser} =
+    useGetUserCommentsQuery(curUser.id);
   const [refreshing, setRefreshing] = useState(false);
   const {
     data: publisherBooks,
@@ -102,12 +104,14 @@ const Book = (props: any) => {
 
   const handleRefreshing = async () => {
     setRefreshing(true);
-    await getBookData();
+    await refetchBookData();
+    await refetchCommetsUser();
+    await refetchCommentsBook();
     setRefreshing(false);
   };
 
   useEffect(() => {
-    getBookData();
+    refetchBookData();
   }, [bookId]);
 
   return (
@@ -151,16 +155,19 @@ const Book = (props: any) => {
               />
             )}
             <FilesBlock bookData={bookData} />
-            <View style={styles.shareIconBlock}>
+            {/* <View style={styles.shareIconBlock}>
               <Icon
                 name="bookmark"
                 style={styles.bookmarkIcon}
-                onPress={() => addBook(bookId)}
+                onPress={() =>
+                  addBook(bookId).then((res: any) => {
+                  })
+                }
               />
               <Icon name="share" style={styles.shareIcon} />
-              {/* <Text style={styles.pageNumber}>تعداد صفحات : 124</Text> */}
-              {/* <Text style={styles.printPrice}>قیمت چاپی : 12,400 تومان</Text> */}
-            </View>
+              <Text style={styles.pageNumber}>تعداد صفحات : 124</Text>
+              <Text style={styles.printPrice}>قیمت چاپی : 12,400 تومان</Text>
+            </View> */}
             <View style={stylesFunc(bookData?.content !== null).introduceBlock}>
               <Text style={styles.introduceTitle}>معرفی کتاب</Text>
               <HTMLView value={bookData?.content} stylesheet={styles} />
@@ -184,19 +191,19 @@ const Book = (props: any) => {
             <UsersComment
               headTitle="نظرات کاربران"
               arr={bookCommentsData?.data}
-              showMore={true}
             />
           )}
           {token && (
             <>
               <View style={styles.borderBottom} />
-              <Text style={styles.yourComment}>نظر شما</Text>
               {/* <View style={styles.yourCommentBlock}> */}
               <YourComment
                 title={`کاربر ${curUser.phone} `}
                 desc="گزارش مشکل در این کتاب"
                 btn="نوشتن نظر"
                 comments={userCommentsData?.data}
+                bookData={bookData}
+                refetchCommentsBook={refetchCommentsBook}
               />
               {/* </View> */}
             </>

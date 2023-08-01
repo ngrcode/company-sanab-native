@@ -92,7 +92,7 @@ const Book = () => {
   useEffect(() => {
     getBookData();
   }, [bookId]);
-  console.log('------------');
+
   return (
     <>
       {typeof publisherId !== 'string' || isFetchingPublisherBooks ? (

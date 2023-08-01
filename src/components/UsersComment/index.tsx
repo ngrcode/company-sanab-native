@@ -6,15 +6,18 @@ import moment from 'moment-jalaali';
 import {useSelector} from 'react-redux';
 
 function UsersComment(props: any) {
-  const {title, headTitle, arr, showMore} = props;
+  const {headTitle, arr} = props;
   const {common} = useSelector((state: RootState) => state);
   const {curUser} = common;
 
   return (
     <View style={styles.containerr}>
-      {showMore && (
-        <MoreTitle marginTop={24} marginBottom={16} title={headTitle} />
-      )}
+      <MoreTitle
+        marginTop={24}
+        marginBottom={16}
+        title={headTitle}
+        booksLength={10}
+      />
       <View style={styles.container}>
         <ScrollView horizontal={true} style={styles.scroll}>
           {arr?.map((item: any) => (

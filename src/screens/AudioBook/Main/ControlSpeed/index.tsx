@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Modal, Pressable, Text, View} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import {styles} from './style';
-
 import Slider from '@react-native-community/slider';
 import {useTranslation} from 'react-i18next';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+
+import {styles, funcStyles} from './style';
 
 const ControlSpeed = () => {
   const {t} = useTranslation();
@@ -73,27 +73,27 @@ const ControlSpeed = () => {
             </View>
             <View style={styles.speedsBlock}>
               <Text
-                style={funcStyles(speed === 0.8).speedNum()}
+                style={funcStyles(speed === 0.8).speedNum}
                 onPress={() => onPressMinusPlus('none', 0.8)}>
                 0.8
               </Text>
               <Text
-                style={styles.speedNum}
+                style={funcStyles(speed === 1.0).speedNum}
                 onPress={() => onPressMinusPlus('none', 1.0)}>
                 1.0
               </Text>
               <Text
-                style={styles.speedNum}
+                style={funcStyles(speed === 1.2).speedNum}
                 onPress={() => onPressMinusPlus('none', 1.2)}>
                 1.2
               </Text>
               <Text
-                style={styles.speedNum}
+                style={funcStyles(speed === 1.5).speedNum}
                 onPress={() => onPressMinusPlus('none', 1.5)}>
                 1.5
               </Text>
               <Text
-                style={styles.speedNum}
+                style={funcStyles(speed === 2.0).speedNum}
                 onPress={() => onPressMinusPlus('none', 2.0)}>
                 2.0
               </Text>

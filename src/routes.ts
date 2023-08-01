@@ -14,6 +14,7 @@ import PurchaseBasket from 'screens/PurchaseBasket';
 import AudioBook from 'screens/AudioBook';
 import Book from 'screens/Book';
 import Test from 'screens/Test';
+import CommentList from 'screens/CommentList';
 
 const dontShowTabBar = {
   tabBarItemStyle: {
@@ -33,6 +34,14 @@ export const routes = [
   {
     name: 'Book',
     component: Book,
+    options: {
+      headerShown: false,
+      ...dontShowTabBar,
+    },
+  },
+  {
+    name: 'CommentList',
+    component: CommentList,
     options: {
       headerShown: false,
       ...dontShowTabBar,

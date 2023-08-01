@@ -144,11 +144,6 @@ export const styles = StyleSheet.create({
     marginTop: 34,
     // marginRight: 24,
   },
-  yourComment: {
-    marginTop: 24,
-    marginBottom: 24,
-    marginRight: 24,
-  },
 
   loading: {
     flex: 1,

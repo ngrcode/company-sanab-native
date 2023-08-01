@@ -20,6 +20,8 @@
     "addComment": "افزودن نظر",
     "remainingTime": "زمان باقی مانده",
     "cancel": "انصراف",
+    "error": "خطا",
+    "success": "موفق",
     "confirm": "تایید"
   },
   "auth": {

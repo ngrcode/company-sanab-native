@@ -20,6 +20,8 @@
     "remainingTime": "Remaining Time",
     "addComment": "Add Comment",
     "cancel": "cancel",
+    "error": "error",
+    "success": "success",
     "confirm": "confirm"
   },
   "auth": {

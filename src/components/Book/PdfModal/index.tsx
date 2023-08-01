@@ -15,9 +15,9 @@ export default function PdfModal(props: any) {
   const extension = fileSrc.split('/').pop().split('.').pop();
 
   useEffect(() => {
-    setPageAndCfi(pageAndCfi);
-  }, [pageAndCfi]);
-  console.log(pageAndCfi.cfi);
+    setPageAndCfi(pageCfi);
+  }, [pageCfi]);
+
   return (
     <View style={styles.centeredView}>
       <Modal

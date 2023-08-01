@@ -1,11 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {theme} from 'shared/theme';
 
-export const funcStyles = isCurSpeed =>
+export const funcStyles = (isCurSpeed: any) =>
   StyleSheet.create({
     speedNum: {
       borderStyle: 'solid',
-      borderColor: theme.colors.gray[3],
+      borderColor: isCurSpeed ? theme.colors.blue[0] : theme.colors.gray[3],
+      color: isCurSpeed ? theme.colors.blue[0] : theme.colors.gray[3],
       borderWidth: 1,
       borderRadius: 10,
       padding: 8,
