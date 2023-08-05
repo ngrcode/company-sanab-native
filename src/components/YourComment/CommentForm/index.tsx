@@ -14,9 +14,7 @@ function CommentForm(props: any) {
   const navigation = useNavigation();
   const {t} = useTranslation();
 
-  const registerComment = (body: any) => {
-    console.log(body);
-  };
+  const registerComment = (body: any) => {};
 
   return (
     <View style={styles.container}>

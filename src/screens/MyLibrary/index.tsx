@@ -42,7 +42,7 @@ const MyLibrary = () => {
       <MyLibraryHeaderBooks />
       {/* <MyLibraryForm /> */}
       {/* <MyLibraryGiftCard /> */}
-      <MyLibraryBuyForm />
+      {/* <MyLibraryBuyForm /> */}
       {/* <MyLibraryPurchase /> */}
       {/* <Button onPress={() => refetchBooks()} btnType="blueBg" title="test" /> */}
       <MyLibraryMyBooks books={boughtBooks?.Books} />

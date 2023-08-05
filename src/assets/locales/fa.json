@@ -22,7 +22,8 @@
     "cancel": "انصراف",
     "error": "خطا",
     "success": "موفق",
-    "confirm": "تایید"
+    "confirm": "تایید",
+    "free": "رایگان"
   },
   "auth": {
     "enterAccount": "ورود به حساب کاربری",

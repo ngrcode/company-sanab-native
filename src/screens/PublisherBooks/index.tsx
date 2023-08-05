@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {BackHandler, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import {useGetPublisherBooksQuery} from 'services/book.service';
 import BooksVList from 'components/BooksVList';
 

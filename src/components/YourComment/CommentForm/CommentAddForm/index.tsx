@@ -17,7 +17,6 @@ function CommentAddForm(props: any) {
   const [addComment] = usePostCommentMutation('addComment');
 
   const registerComment = (body: any) => {
-    console.log(body);
   };
 
   const onSubmitHandler = async (values: any) => {
@@ -32,7 +31,6 @@ function CommentAddForm(props: any) {
       initialValues={{}}
       onSubmit={(values: any) => onSubmitHandler(values)}>
       {({setFieldValue, values, handleSubmit, handleChange}: any) => {
-        // console.log('=============', values);
         return (
           <View style={styles.container}>
             <View style={styles.block}>

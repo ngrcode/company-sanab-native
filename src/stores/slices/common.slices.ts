@@ -48,6 +48,7 @@ export const commonSlice = createSlice({
       state.loginCode = {code: '', id: ''};
       state.refreshToken = '';
     },
+
     handleModalBook: (state, action: PayloadAction<any>) => {
       const {bookId, show} = action.payload;
       state.modalBook.bookId = bookId;

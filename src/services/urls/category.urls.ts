@@ -1,4 +1,4 @@
-export const categoriesUrl = '/categories';
+export const categoriesUrl = '/categories/';
 
 export const categoryBooksUrl = (params: any) => {
   const {id, limit, page} = params;

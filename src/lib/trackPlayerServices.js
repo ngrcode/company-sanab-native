@@ -4,7 +4,6 @@ import TrackPlayer, {
   RepeatMode,
   Event,
 } from 'react-native-track-player';
-import song from 'assets/mp3/two.mp3';
 
 export async function setupPlayer() {
   let isSetup = false;

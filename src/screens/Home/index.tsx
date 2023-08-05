@@ -10,6 +10,7 @@ import HomeBooksByCategory from 'screens/Home/HomeBooksByCategory';
 import {persistor} from 'stores/store';
 import {reset} from 'stores/slices/common.slices';
 import {useGetCategoriesQuery} from 'services/category.service';
+import {store} from 'stores/store';
 
 const Home = () => {
   const dispatch = useDispatch();

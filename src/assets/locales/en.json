@@ -22,7 +22,8 @@
     "cancel": "cancel",
     "error": "error",
     "success": "success",
-    "confirm": "confirm"
+    "confirm": "confirm",
+    "free": "free"
   },
   "auth": {
     "enterAccount": "Login To Account",

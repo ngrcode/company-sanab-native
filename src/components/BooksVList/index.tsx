@@ -9,11 +9,13 @@ import {handleModalBook} from 'stores/slices/common.slices';
 import Button from 'components/Button';
 import {BASE_URL} from 'env';
 import {styles} from './style';
+import {useTranslation} from 'react-i18next';
 
 function BooksVList(props: any) {
   const {books, headerTitle} = props;
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   useEffect(() => {
     navigation.setOptions({
@@ -22,7 +24,7 @@ function BooksVList(props: any) {
   }, []);
 
   const clickBookImg = (bookId: string) => {
-    dispatch(handleModalBook({show: true, bookId}));
+    navigation.navigate('Book', {bookId});
   };
 
   return (
@@ -47,7 +49,7 @@ function BooksVList(props: any) {
                     height={20}
                     width={70}
                     btnType="borderBlack"
-                    title={price}
+                    title={price === 0 ? t('gl.free') : price}
                     fontWeight="400"
                     fontSize={9}
                     lineHeight={16}

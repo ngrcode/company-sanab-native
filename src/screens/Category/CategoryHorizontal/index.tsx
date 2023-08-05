@@ -1,16 +1,8 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {
-  View,
-  BackHandler,
-  Button,
-  Text,
-  ScrollView,
-  RefreshControl,
-} from 'react-native';
+import {ScrollView, RefreshControl} from 'react-native';
 import CategoryHBooks from 'screens/Category/CategoryHBooks';
 import {useGetCategoryQuery} from 'services/category.service';
 import {useNavigation} from '@react-navigation/native';
-import {backHandlerMethod} from 'utils/common.utils';
 
 function CategoryHorizontal(props: any) {
   const {paramsRoute, setExParams} = props;
@@ -27,10 +19,6 @@ function CategoryHorizontal(props: any) {
   }, [setExParams, paramsRoute]);
 
   useEffect(() => {
-    backHandlerMethod(navigation, 'category');
-  }, [navigation]);
-
-  useEffect(() => {
     navigation.setOptions({
       title: categoryName,
     });
@@ -43,6 +31,7 @@ function CategoryHorizontal(props: any) {
 
   return (
     <ScrollView
+      style={{marginTop: 20}}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={handleRefreshing} />
       }>

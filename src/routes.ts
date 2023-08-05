@@ -13,8 +13,9 @@ import Auth from 'screens/Auth';
 import PurchaseBasket from 'screens/PurchaseBasket';
 import AudioBook from 'screens/AudioBook';
 import Book from 'screens/Book';
-import Test from 'screens/Test';
 import CommentList from 'screens/CommentList';
+
+// const {token} = store.getState().common;
 
 const dontShowTabBar = {
   tabBarItemStyle: {
@@ -22,7 +23,15 @@ const dontShowTabBar = {
   },
 };
 
-export const routes = [
+const showOrNotByToken = (token: any) => {
+  return {
+    tabBarItemStyle: {
+      display: token ? 'flex' : 'none',
+    },
+  };
+};
+
+export const routes = (token: any) => [
   // {
   //   name: 'test',
   //   component: Test,
@@ -69,6 +78,7 @@ export const routes = [
     options: {
       tabBarLabel: `${i18next.t('gl.myLibrary')}`,
       title: `${i18next.t('gl.myLibrary')}`,
+      ...showOrNotByToken(token),
     },
   },
   {

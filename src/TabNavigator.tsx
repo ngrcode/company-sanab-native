@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {useTheme} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -9,6 +9,7 @@ import {theme} from 'shared/theme';
 import TabBarHeader from 'components/ScreenHeader';
 import BookModal from 'components/BookModal';
 import {routes} from './routes';
+import {useSelector} from 'react-redux';
 
 const styles = (props?: any) =>
   StyleSheet.create({
@@ -27,6 +28,8 @@ const Tab = createBottomTabNavigator<any>();
 
 export default function TabNavigator() {
   const {colors} = useTheme();
+  const common = useSelector((state: RootState) => state.common);
+  const {token} = common;
 
   return (
     <>
@@ -68,8 +71,8 @@ export default function TabNavigator() {
           tabBarActiveTintColor: colors.blue[0],
           tabBarInactiveTintColor: colors.gray[0],
         })}>
-        {routes &&
-          routes?.map((item: any) => {
+        {routes(token) &&
+          routes(token)?.map((item: any) => {
             const {name, component, options} = item;
             return (
               <Tab.Screen

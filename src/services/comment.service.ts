@@ -21,7 +21,6 @@ const commentApi = api.injectEndpoints({
     postComment: build.mutation({
       query: (props: any) => {
         const {bookId, values} = props;
-        console.log(props, props.values);
         return {
           url: bookCommentsUrl(bookId),
           method: 'POST',

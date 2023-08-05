@@ -1,5 +1,5 @@
 import React, {forwardRef, useEffect, useImperativeHandle} from 'react';
-import {ScrollView, BackHandler, Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import BooksHList from 'components/BooksHList';
 import {useGetCategoryBooksQuery} from 'services/category.service';
 import Loading from 'components/Loading';

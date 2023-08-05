@@ -123,16 +123,16 @@ const Book = () => {
               />
             )}
             <FilesBlock bookData={bookData} />
-            <View style={styles.shareIconBlock}>
+            {/* <View style={styles.shareIconBlock}>
               <Icon
                 name="bookmark"
                 style={styles.bookmarkIcon}
                 onPress={() => addBook(bookId)}
-              />
-              <Icon name="share" style={styles.shareIcon} />
-              {/* <Text style={styles.pageNumber}>تعداد صفحات : 124</Text> */}
-              {/* <Text style={styles.printPrice}>قیمت چاپی : 12,400 تومان</Text> */}
-            </View>
+              /> */}
+            {/* <Icon name="share" style={styles.shareIcon} /> */}
+            {/* <Text style={styles.pageNumber}>تعداد صفحات : 124</Text> */}
+            {/* <Text style={styles.printPrice}>قیمت چاپی : 12,400 تومان</Text> */}
+            {/* </View> */}
             <View style={stylesFunc(bookData?.content !== null).introduceBlock}>
               <Text style={styles.introduceTitle}>معرفی کتاب</Text>
               <HTMLView value={bookData?.content} stylesheet={styles} />

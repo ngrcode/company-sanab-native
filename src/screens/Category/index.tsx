@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useRoute} from '@react-navigation/native';
-import {View} from 'react-native';
+import {View, BackHandler} from 'react-native';
 
 import CategoryRows from 'screens/Category/CategoryRows';
 import CategoryHorizontal from 'screens/Category/CategoryHorizontal';
@@ -8,6 +8,10 @@ import CategoryVertical from 'screens/Category/CategoryVertical';
 
 function Category({navigation}: any) {
   const route = useRoute();
+  const paramsRoute = route.params;
+  const categoryName = paramsRoute?.categoryName;
+  const categoryId = paramsRoute?.categoryId;
+  const routeName = paramsRoute?.name;
   const [exParams, setExParams] = useState('');
 
   const renderRoutes = (routeName: string) => {
@@ -31,16 +35,38 @@ function Category({navigation}: any) {
         return <CategoryRows />;
     }
   };
+
   /**
-   *  when leaving screen
+   *  backhandler
    */
   useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', () => {
-      navigation.setParams({categoryId: '', name: ''});
-      setExParams('');
-    });
-    return unsubscribe;
-  }, [navigation]);
+    const backAction = () => {
+      switch (route?.params?.name) {
+        case 'hCategory':
+          navigation.navigate('category');
+          break;
+        case 'vCategory':
+          navigation.navigate('category', {
+            name: 'hCategory',
+            categoryId: categoryId,
+            categoryName: categoryName,
+          });
+          break;
+        default:
+          navigation.goBack();
+          setExParams('');
+          break;
+      }
+
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    return () => backHandler.remove();
+  }, [navigation, categoryId, categoryName, routeName]);
+
   return <View>{renderRoutes(route?.params?.name)}</View>;
 }
 

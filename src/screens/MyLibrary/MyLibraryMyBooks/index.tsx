@@ -28,6 +28,8 @@ function MyLibraryMyBooks(props: any) {
           navigation.navigate('category', {
             name: 'vCategory',
             boughtBooks: true,
+            boughtBooks: books,
+            categoryName: 'کتابهای کتابخانه من',
           })
         }
       />
