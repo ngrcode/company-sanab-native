@@ -5,7 +5,6 @@ import {Shadow} from 'react-native-shadow-2';
 import {useNavigation, ParamListBase} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {handleModalBook} from 'stores/slices/common.slices';
 import Button from 'components/Button';
 import {BASE_URL} from 'env';
 import {styles} from './style';

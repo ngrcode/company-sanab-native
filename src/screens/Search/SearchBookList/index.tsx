@@ -3,7 +3,6 @@ import {Text, View, Image, Pressable} from 'react-native';
 import {styles} from './style';
 import Loading from 'screens/Search/SearchLoading';
 import {Shadow} from 'react-native-shadow-2';
-import {handleModalBook} from 'stores/slices/common.slices';
 import {useDispatch} from 'react-redux';
 
 function SearchBookList(props: any) {
@@ -11,7 +10,7 @@ function SearchBookList(props: any) {
   const dispatch = useDispatch();
 
   const handleClickBook = (bookId: any) => {
-    dispatch(handleModalBook({show: true, bookId}));
+    navigation.navigate('Book', {bookId});
   };
 
   return (

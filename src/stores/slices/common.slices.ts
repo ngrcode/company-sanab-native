@@ -49,11 +49,6 @@ export const commonSlice = createSlice({
       state.refreshToken = '';
     },
 
-    handleModalBook: (state, action: PayloadAction<any>) => {
-      const {bookId, show} = action.payload;
-      state.modalBook.bookId = bookId;
-      state.modalBook.show = show;
-    },
     reset: () => initialState,
   },
   extraReducers: builder => {
@@ -63,13 +58,7 @@ export const commonSlice = createSlice({
   },
 });
 
-export const {
-  handleAuth,
-  logout,
-  handleProfile,
-  handleLoginCode,
-  reset,
-  handleModalBook,
-} = commonSlice.actions;
+export const {handleAuth, logout, handleProfile, handleLoginCode, reset} =
+  commonSlice.actions;
 
 export default commonSlice.reducer;
