@@ -6,15 +6,17 @@ export const styles = StyleSheet.create({
   container: {
     display: 'flex',
     alignItems: 'flex-end',
-    marginVertical: 16,
     marginHorizontal: 24,
+    marginTop: 16,
+    marginBottom: 80,
     position: 'relative',
   },
   block: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingRight: 10,
   },
   imgWrapper: {
     display: 'flex',

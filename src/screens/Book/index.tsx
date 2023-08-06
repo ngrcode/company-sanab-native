@@ -51,7 +51,7 @@ const Book = (props: any) => {
     useGetBookCommentsQuery(bookId);
   const {data: userCommentsData, refetch: refetchCommetsUser} =
     useGetUserCommentsQuery(curUser.id);
-  const [refreshing, setRefreshing] = useState(false);
+  const [refreshing, setRefreshing] = useState(true);
   const {
     data: publisherBooks,
     isFetching: isFetchingPublisherBooks,

@@ -10,7 +10,6 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const BooksHList = (props: any) => {
   const {title, books, onPressMore, isFetching, ...rest} = props;
-  const dispatch = useDispatch();
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   const clickBookImg = async (id: string) => {
